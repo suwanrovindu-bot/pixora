@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #FAF6EF;
-    --bg-alt: #F2ECE1;
-    --ink: #211C16;
+    --bg: #F1FAF9;
+    --bg-alt: #E2F4F0;
+    --ink: #122322;
     --ink-soft: #6F6557;
     --cyan: #00D9E8;
     --cyan-dark: #00AEBB;
     --mint: #2BE39A;
     --mint-dark: #00B377;
-    --line: #E4DCCC;
+    --line: #CFE6E2;
     --card: #FFFFFF;
     --radius: 14px;
     --max: 1180px;
@@ -156,7 +156,7 @@
 
   .hero-visual{
     position:relative; aspect-ratio:1/1.05; border-radius:24px;
-    background:linear-gradient(155deg, #2A241C 0%, #211C16 55%, #1A150F 100%);
+    background:linear-gradient(155deg, #142826 0%, #122322 55%, #0C1716 100%);
     overflow:hidden; padding:28px;
   }
   .hero-visual .tag{
@@ -189,7 +189,7 @@
     animation:scroll 28s linear infinite;
   }
   .marquee-track span{
-    color:#EDE6D8; font-family:'Syne'; font-weight:600; font-size:20px;
+    color:#DCF2EE; font-family:'Syne'; font-weight:600; font-size:20px;
     display:flex; align-items:center; gap:50px;
   }
   .marquee-track span::after{ content:'✦'; color:var(--mint); font-size:14px; }
@@ -251,26 +251,26 @@
     background:var(--ink); color:#fff; border-color:var(--ink); position:relative;
   }
   .pricing-card.featured .price, .pricing-card.featured h3{ color:#fff; }
-  .pricing-card.featured p{ color:#C9C0AE; }
-  .pricing-card.featured li{ color:#EDE6D8; }
+  .pricing-card.featured p{ color:#A9CFC9; }
+  .pricing-card.featured li{ color:#DCF2EE; }
   .badge{
     position:absolute; top:-13px; right:30px; background:var(--cyan); color:#fff;
     font-size:12px; font-weight:700; padding:6px 14px; border-radius:999px;
   }
   .pricing-card h3{ font-size:20px; margin-bottom:6px; }
   .pricing-card .tagline{ font-size:14px; color:var(--ink-soft); margin-bottom:24px; }
-  .pricing-card.featured .tagline{ color:#C9C0AE; }
+  .pricing-card.featured .tagline{ color:#A9CFC9; }
   .price{ font-family:'Syne'; font-size:42px; font-weight:700; margin-bottom:4px; }
   .price span{ font-size:15px; font-weight:500; color:var(--ink-soft); }
-  .pricing-card.featured .price span{ color:#C9C0AE; }
+  .pricing-card.featured .price span{ color:#A9CFC9; }
   .price-note{ font-size:13px; color:var(--ink-soft); margin-bottom:28px; }
-  .pricing-card.featured .price-note{ color:#C9C0AE; }
+  .pricing-card.featured .price-note{ color:#A9CFC9; }
   .pricing-card ul{ margin-bottom:30px; flex-grow:1; }
   .pricing-card li{
     font-size:14.5px; padding:9px 0; border-top:1px solid var(--line);
     display:flex; gap:10px; color:var(--ink);
   }
-  .pricing-card.featured li{ border-top:1px solid #3A332A; }
+  .pricing-card.featured li{ border-top:1px solid #234240; }
   .pricing-card li::before{ content:'✓'; color:var(--cyan); font-weight:700; }
   .pricing-card .btn-secondary, .pricing-card .btn-primary{ width:100%; justify-content:center; }
   .pricing-card.featured .btn-secondary{ background:#fff; color:var(--ink); border-color:#fff; }
@@ -329,10 +329,10 @@
     background:linear-gradient(135deg, var(--cyan), var(--mint)); opacity:0.3; filter:blur(90px); top:-120px; right:-100px;
   }
   .cta-band h2{ color:#fff; font-size:clamp(28px,4vw,42px); margin-bottom:18px; position:relative; }
-  .cta-band p{ color:#C9C0AE; font-size:16px; margin-bottom:32px; position:relative; }
+  .cta-band p{ color:#A9CFC9; font-size:16px; margin-bottom:32px; position:relative; }
   .cta-band .hero-actions{ justify-content:center; position:relative; }
-  .cta-band .btn-secondary{ border-color:#3A332A; color:#fff; }
-  .cta-band .btn-secondary:hover{ background:#2A241C; }
+  .cta-band .btn-secondary{ border-color:#234240; color:#fff; }
+  .cta-band .btn-secondary:hover{ background:#142826; }
 
   /* ---------- FOOTER ---------- */
   footer{ border-top:1px solid var(--line); padding:50px 0 30px; }
@@ -390,7 +390,10 @@
       <button onclick="showPage('pricing')" data-nav="pricing">Pricing</button>
       <button onclick="showPage('faq')" data-nav="faq">FAQ</button>
     </div>
-    <button class="nav-cta" onclick="showPage('contact')">Start a Project</button>
+    <div id="authNav" style="display:flex; align-items:center; gap:14px;">
+      <button onclick="showPage('signin')" data-nav="signin" style="font-size:15px; color:var(--ink-soft); font-weight:500;">Sign In</button>
+      <button class="nav-cta" onclick="showPage('contact')">Start a Project</button>
+    </div>
     <div class="menu-toggle" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
   </nav>
 </header>
@@ -444,19 +447,16 @@
           <div class="icon">✦</div>
           <h3>Website Design & Development</h3>
           <p>Custom, responsive websites built from scratch — designed around your brand, built for speed.</p>
-          <div class="from">Starting at <b>$1,800</b></div>
         </div>
         <div class="card service-card">
           <div class="icon" style="color:var(--mint)">▣</div>
           <h3>Landing Pages</h3>
           <p>High-converting single pages for product launches, campaigns, and lead generation.</p>
-          <div class="from">Starting at <b>$650</b></div>
         </div>
         <div class="card service-card">
           <div class="icon">⬡</div>
           <h3>E-Commerce</h3>
           <p>Full online stores with secure checkout, inventory, and a back-end you can actually manage.</p>
-          <div class="from">Starting at <b>$2,400</b></div>
         </div>
       </div>
     </div>
@@ -537,82 +537,18 @@
   <section id="portfolio" class="page">
     <div class="wrap page-header">
       <div class="eyebrow">Portfolio</div>
-      <h1>Recent work, real results.</h1>
-      <p>A selection of projects across e-commerce, SaaS, and local business websites.</p>
+      <h1>Recent work.</h1>
+      <p>A look at what we've built so far.</p>
     </div>
 
     <div class="wrap">
-      <div class="grid-3">
+      <div style="max-width:380px;">
         <div class="card portfolio-card">
-          <div class="portfolio-thumb">Lumen & Co.</div>
+          <div class="portfolio-thumb">Ruwan Deshan</div>
           <div class="portfolio-body">
-            <div class="tag-label">E-Commerce</div>
-            <h3>Lumen & Co.</h3>
-            <p>A direct-to-consumer lighting brand needed a storefront that matched their product quality.</p>
-            <div class="result-row">
-              <div><strong>+186%</strong><span>Conversion rate</span></div>
-              <div><strong>1.1s</strong><span>Load time</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Northfield Studio</div>
-          <div class="portfolio-body">
-            <div class="tag-label">Brand + Website</div>
-            <h3>Northfield Studio</h3>
-            <p>Full rebrand and website for an architecture firm looking to attract higher-end clients.</p>
-            <div class="result-row">
-              <div><strong>+94%</strong><span>Inquiry volume</span></div>
-              <div><strong>3wk</strong><span>Turnaround</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Verdant SaaS</div>
-          <div class="portfolio-body">
-            <div class="tag-label">Landing Page</div>
-            <h3>Verdant</h3>
-            <p>A single launch page built for a product hunt debut — built and shipped in 8 days.</p>
-            <div class="result-row">
-              <div><strong>4,200</strong><span>Signups week one</span></div>
-              <div><strong>0.9s</strong><span>Load time</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Marrow Coffee</div>
-          <div class="portfolio-body">
-            <div class="tag-label">Website Design</div>
-            <h3>Marrow Coffee Co.</h3>
-            <p>Local roastery website with online ordering and a story-driven brand presence.</p>
-            <div class="result-row">
-              <div><strong>+61%</strong><span>Online orders</span></div>
-              <div><strong>4.9/5</strong><span>Client rating</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Hale Legal</div>
-          <div class="portfolio-body">
-            <div class="tag-label">UI/UX + Website</div>
-            <h3>Hale Legal Partners</h3>
-            <p>A law firm site redesigned around clarity — fewer pages, clearer paths to contact.</p>
-            <div class="result-row">
-              <div><strong>+73%</strong><span>Contact form fills</span></div>
-              <div><strong>-40%</strong><span>Bounce rate</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Reform Fitness</div>
-          <div class="portfolio-body">
-            <div class="tag-label">E-Commerce</div>
-            <h3>Reform Fitness</h3>
-            <p>Membership and merch store for a boutique gym chain across three locations.</p>
-            <div class="result-row">
-              <div><strong>+120%</strong><span>Merch revenue</span></div>
-              <div><strong>2.4x</strong><span>Mobile sales</span></div>
-            </div>
+            <div class="tag-label">Business Site</div>
+            <h3>Ruwan Deshan</h3>
+            <p>We're creating super safe and modern websites that you've never seen before.</p>
           </div>
         </div>
       </div>
@@ -771,6 +707,73 @@
       </div>
     </div>
   </section>
+  <!-- ============ SIGN IN ============ -->
+  <section id="signin" class="page">
+    <div class="wrap page-header">
+      <div class="eyebrow">Account</div>
+      <h1>Sign in</h1>
+      <p>Welcome back. Enter your details below.</p>
+    </div>
+    <div class="wrap">
+      <div style="max-width:420px;">
+        <form id="signinForm" onsubmit="return handleSignIn(event)">
+          <div class="field">
+            <label for="signinEmail">Email</label>
+            <input type="email" id="signinEmail" required placeholder="you@email.com">
+          </div>
+          <div class="field">
+            <label for="signinPassword">Password</label>
+            <input type="password" id="signinPassword" required placeholder="••••••••">
+          </div>
+          <div id="signinError" style="color:#D14343; font-size:13.5px; margin-bottom:14px; display:none;"></div>
+          <button type="submit" class="btn-primary">Sign in →</button>
+          <div class="form-note">Don't have an account? <button type="button" onclick="showPage('signup')" style="color:var(--cyan); font-weight:600; text-decoration:underline;">Sign up</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIGN UP ============ -->
+  <section id="signup" class="page">
+    <div class="wrap page-header">
+      <div class="eyebrow">Account</div>
+      <h1>Create an account</h1>
+      <p>Sign up to follow along with Pixora Studio.</p>
+    </div>
+    <div class="wrap">
+      <div style="max-width:420px;">
+        <form id="signupForm" onsubmit="return handleSignUp(event)">
+          <div class="field">
+            <label for="signupName">Full name</label>
+            <input type="text" id="signupName" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" required placeholder="you@email.com">
+          </div>
+          <div class="field">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" required placeholder="At least 6 characters" minlength="6">
+          </div>
+          <div id="signupError" style="color:#D14343; font-size:13.5px; margin-bottom:14px; display:none;"></div>
+          <button type="submit" class="btn-primary">Create account →</button>
+          <div class="form-note">Already have an account? <button type="button" onclick="showPage('signin')" style="color:var(--cyan); font-weight:600; text-decoration:underline;">Sign in</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACCOUNT (logged in) ============ -->
+  <section id="account" class="page">
+    <div class="wrap page-header">
+      <div class="eyebrow">Account</div>
+      <h1 id="accountWelcome">Welcome</h1>
+      <p id="accountRole">Signed in</p>
+    </div>
+    <div class="wrap">
+      <button class="btn-secondary" onclick="handleSignOut()">Sign out</button>
+    </div>
+  </section>
 
 </main>
 
@@ -858,6 +861,82 @@
        and replace this alert with a fetch() POST to their endpoint. */
     alert('Thanks! This form is a placeholder — connect it to Web3Forms or another service to receive real submissions.');
     this.reset();
+  });
+</script>
+
+<!-- ===================== FIREBASE AUTH SETUP ===================== -->
+<!-- STEP 1: Paste your real firebaseConfig from the Firebase console below,
+     replacing the placeholder values. -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
+    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+    storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
+    messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
+  };
+
+  // STEP 2: set the email you'll sign up with to be recognized as Admin.
+  const ADMIN_EMAIL = "suwanrovindu@gmail.com";
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function showAuthError(elId, message){
+    const el = document.getElementById(elId);
+    el.textContent = message;
+    el.style.display = 'block';
+  }
+
+  function handleSignUp(e){
+    e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    document.getElementById('signupError').style.display = 'none';
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((cred) => cred.user.updateProfile({ displayName: name }))
+      .then(() => { showPage('home'); })
+      .catch((err) => showAuthError('signupError', err.message));
+    return false;
+  }
+
+  function handleSignIn(e){
+    e.preventDefault();
+    const email = document.getElementById('signinEmail').value;
+    const password = document.getElementById('signinPassword').value;
+    document.getElementById('signinError').style.display = 'none';
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => { showPage('home'); })
+      .catch((err) => showAuthError('signinError', err.message));
+    return false;
+  }
+
+  function handleSignOut(){
+    auth.signOut().then(() => showPage('home'));
+  }
+
+  // Keeps the nav bar in sync with whether someone is logged in
+  auth.onAuthStateChanged(function(user){
+    const authNav = document.getElementById('authNav');
+    if (user){
+      const isAdmin = user.email === ADMIN_EMAIL;
+      authNav.innerHTML =
+        '<button onclick="showPage(\'account\')" style="font-size:15px; color:var(--ink-soft); font-weight:500;">'
+        + (user.displayName || user.email) + (isAdmin ? ' (Admin)' : '') + '</button>'
+        + '<button class="nav-cta" onclick="showPage(\'contact\')">Start a Project</button>';
+      document.getElementById('accountWelcome').textContent = 'Welcome, ' + (user.displayName || user.email);
+      document.getElementById('accountRole').textContent = isAdmin ? 'Signed in as Admin' : 'Signed in';
+    } else {
+      authNav.innerHTML =
+        '<button onclick="showPage(\'signin\')" style="font-size:15px; color:var(--ink-soft); font-weight:500;">Sign In</button>'
+        + '<button class="nav-cta" onclick="showPage(\'contact\')">Start a Project</button>';
+    }
   });
 </script>
 
