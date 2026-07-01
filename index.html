@@ -385,7 +385,6 @@
     <div class="nav-links">
       <button onclick="showPage('home')" class="active" data-nav="home">Home</button>
       <button onclick="showPage('services')" data-nav="services">Services</button>
-      <button onclick="showPage('portfolio')" data-nav="portfolio">Portfolio</button>
       <button onclick="showPage('team')" data-nav="team">Team</button>
       <button onclick="showPage('pricing')" data-nav="pricing">Pricing</button>
       <button onclick="showPage('faq')" data-nav="faq">FAQ</button>
@@ -410,7 +409,6 @@
           <p>Pixora Studio is a small team of designers and developers crafting fast, beautiful websites for ambitious brands — from first sketch to launch day.</p>
           <div class="hero-actions">
             <button class="btn-primary" onclick="showPage('contact')">Start a project →</button>
-            <button class="btn-secondary" onclick="showPage('portfolio')">View our work</button>
           </div>
         </div>
         <div class="hero-visual">
@@ -534,27 +532,6 @@
   </section>
 
   <!-- ============ PORTFOLIO ============ -->
-  <section id="portfolio" class="page">
-    <div class="wrap page-header">
-      <div class="eyebrow">Portfolio</div>
-      <h1>Recent work.</h1>
-      <p>A look at what we've built so far.</p>
-    </div>
-
-    <div class="wrap">
-      <div style="max-width:380px;">
-        <div class="card portfolio-card">
-          <div class="portfolio-thumb">Ruwan Deshan</div>
-          <div class="portfolio-body">
-            <div class="tag-label">Business Site</div>
-            <h3>Ruwan Deshan</h3>
-            <p>We're creating super safe and modern websites that you've never seen before.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ TEAM ============ -->
   <section id="team" class="page">
     <div class="wrap page-header">
@@ -789,7 +766,6 @@
         <ul>
           <li><button onclick="showPage('home')">Home</button></li>
           <li><button onclick="showPage('services')">Services</button></li>
-          <li><button onclick="showPage('portfolio')">Portfolio</button></li>
           <li><button onclick="showPage('team')">Team</button></li>
         </ul>
       </div>
@@ -871,12 +847,13 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script>
   const firebaseConfig = {
-    apiKey: "PASTE_YOUR_API_KEY_HERE",
-    authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
-    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
-    storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
-    messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
-    appId: "PASTE_YOUR_APP_ID_HERE"
+    apiKey: "AIzaSyA6nEPO9kvtOMvalLEwEP4mP5-bHBMRDjM",
+    authDomain: "pixora-studio-b7311.firebaseapp.com",
+    projectId: "pixora-studio-b7311",
+    storageBucket: "pixora-studio-b7311.firebasestorage.app",
+    messagingSenderId: "243187143064",
+    appId: "1:243187143064:web:7cdc5cac9bdacfd7bd1bed",
+    measurementId: "G-0FQ7Q7XTQL"
   };
 
   // STEP 2: set the email you'll sign up with to be recognized as Admin.
