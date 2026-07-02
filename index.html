@@ -846,7 +846,7 @@
      2. Create a form — Web3Forms will email you an Access Key
      3. Paste that key below, replacing the placeholder text
      Submissions will then arrive by email — no backend server needed. */
-  const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE";
+  const WEB3FORMS_ACCESS_KEY = "546a2d44-5403-46b2-b209-f7c99bfff04e";
 
   const contactForm = document.getElementById('contactForm');
   const contactSubmitBtn = contactForm.querySelector('button[type="submit"]');
@@ -857,7 +857,7 @@
   contactForm.addEventListener('submit', async function(e){
     e.preventDefault();
 
-    if(WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE"){
+    if(!WEB3FORMS_ACCESS_KEY){
       contactStatus.style.display = 'block';
       contactStatus.style.color = '#D14343';
       contactStatus.textContent = 'Form not connected yet — add your Web3Forms access key in the code to start receiving messages.';
