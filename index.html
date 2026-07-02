@@ -379,85 +379,8 @@
 </head>
 <body>
 
-<!-- ===================== AUTH GATE ===================== -->
-<div id="authGate" style="display:none; position:fixed; inset:0; background:var(--bg); z-index:9999; overflow-y:auto;">
-  <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 20px;">
-    <div style="width:100%; max-width:440px;">
-
-      <!-- Logo -->
-      <div style="text-align:center; margin-bottom:36px;">
-        <div class="logo" style="justify-content:center; font-size:24px; margin-bottom:10px;">
-          <span></span>Pixora Studio
-        </div>
-        <p style="color:var(--ink-soft); font-size:15px;">Sign in to access the studio</p>
-      </div>
-
-      <!-- Tabs -->
-      <div style="display:flex; border:1.5px solid var(--line); border-radius:12px; overflow:hidden; margin-bottom:28px; background:var(--bg-alt);">
-        <button id="tabSignin" onclick="switchGateTab('signin')"
-          style="flex:1; padding:12px; font-family:inherit; font-weight:600; font-size:14.5px;
-          background:var(--card); border:none; border-radius:10px; margin:4px; cursor:pointer;
-          color:var(--ink); transition:all .2s ease;">Sign In</button>
-        <button id="tabSignup" onclick="switchGateTab('signup')"
-          style="flex:1; padding:12px; font-family:inherit; font-weight:600; font-size:14.5px;
-          background:transparent; border:none; border-radius:10px; margin:4px; cursor:pointer;
-          color:var(--ink-soft); transition:all .2s ease;">Sign Up</button>
-      </div>
-
-      <!-- Sign In Form -->
-      <div id="gateSignin" style="background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:36px;">
-        <h2 style="font-size:22px; margin-bottom:6px;">Welcome back</h2>
-        <p style="color:var(--ink-soft); font-size:14px; margin-bottom:26px;">Enter your details to sign in</p>
-        <form onsubmit="return gateSignIn(event)">
-          <div class="field">
-            <label for="gateEmail">Email</label>
-            <input type="email" id="gateEmail" required placeholder="you@email.com">
-          </div>
-          <div class="field">
-            <label for="gatePassword">Password</label>
-            <input type="password" id="gatePassword" required placeholder="••••••••">
-          </div>
-          <div id="gateSigninError" style="color:#D14343; font-size:13px; margin-bottom:14px; display:none;"></div>
-          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Sign in →</button>
-        </form>
-        <p style="text-align:center; font-size:13.5px; color:var(--ink-soft); margin-top:18px;">
-          Don't have an account?
-          <button onclick="switchGateTab('signup')" style="color:var(--cyan); font-weight:600; text-decoration:underline; cursor:pointer; font-family:inherit;">Sign up</button>
-        </p>
-      </div>
-
-      <!-- Sign Up Form -->
-      <div id="gateSignup" style="display:none; background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:36px;">
-        <h2 style="font-size:22px; margin-bottom:6px;">Create account</h2>
-        <p style="color:var(--ink-soft); font-size:14px; margin-bottom:26px;">Join Pixora Studio</p>
-        <form onsubmit="return gateSignUp(event)">
-          <div class="field">
-            <label for="gateName">Full name</label>
-            <input type="text" id="gateName" required placeholder="Your name">
-          </div>
-          <div class="field">
-            <label for="gateSignupEmail">Email</label>
-            <input type="email" id="gateSignupEmail" required placeholder="you@email.com">
-          </div>
-          <div class="field">
-            <label for="gateSignupPassword">Password</label>
-            <input type="password" id="gateSignupPassword" required placeholder="At least 6 characters" minlength="6">
-          </div>
-          <div id="gateSignupError" style="color:#D14343; font-size:13px; margin-bottom:14px; display:none;"></div>
-          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Create account →</button>
-        </form>
-        <p style="text-align:center; font-size:13.5px; color:var(--ink-soft); margin-top:18px;">
-          Already have an account?
-          <button onclick="switchGateTab('signin')" style="color:var(--cyan); font-weight:600; text-decoration:underline; cursor:pointer; font-family:inherit;">Sign in</button>
-        </p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ===================== MAIN SITE (hidden until logged in) ===================== -->
-<div id="siteWrapper" style="display:none;">
+<!-- ===================== MAIN SITE (public — no login required) ===================== -->
+<div id="siteWrapper">
 
 <header>
   <nav class="wrap">
@@ -918,12 +841,63 @@
     }
   }
 
-  document.getElementById('contactForm').addEventListener('submit', function(e){
+  /* ===================== CONTACT FORM (Web3Forms) =====================
+     1. Go to https://web3forms.com and sign up free with suwanrovindu@gmail.com
+     2. Create a form — Web3Forms will email you an Access Key
+     3. Paste that key below, replacing the placeholder text
+     Submissions will then arrive by email — no backend server needed. */
+  const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE";
+
+  const contactForm = document.getElementById('contactForm');
+  const contactSubmitBtn = contactForm.querySelector('button[type="submit"]');
+  const contactStatus = document.createElement('div');
+  contactStatus.style.cssText = 'font-size:13.5px; margin-top:14px; text-align:center; display:none;';
+  contactForm.appendChild(contactStatus);
+
+  contactForm.addEventListener('submit', async function(e){
     e.preventDefault();
-    /* To receive these messages by email, create a free key at web3forms.com
-       and replace this alert with a fetch() POST to their endpoint. */
-    alert('Thanks! This form is a placeholder — connect it to Web3Forms or another service to receive real submissions.');
-    this.reset();
+
+    if(WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE"){
+      contactStatus.style.display = 'block';
+      contactStatus.style.color = '#D14343';
+      contactStatus.textContent = 'Form not connected yet — add your Web3Forms access key in the code to start receiving messages.';
+      return;
+    }
+
+    const originalText = contactSubmitBtn.textContent;
+    contactSubmitBtn.textContent = 'Sending…';
+    contactSubmitBtn.disabled = true;
+    contactStatus.style.display = 'none';
+
+    const formData = new FormData(contactForm);
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+    formData.append('subject', 'New project inquiry — Pixora Studio');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+      const result = await response.json();
+
+      contactStatus.style.display = 'block';
+      if(result.success){
+        contactStatus.style.color = 'var(--mint-dark)';
+        contactStatus.textContent = "Thanks — your message is in! We'll reply within one business day.";
+        contactForm.reset();
+      } else {
+        contactStatus.style.color = '#D14343';
+        contactStatus.textContent = 'Something went wrong sending your message. Please try again or email us directly.';
+      }
+    } catch (err) {
+      contactStatus.style.display = 'block';
+      contactStatus.style.color = '#D14343';
+      contactStatus.textContent = 'Network error — please try again or email us directly.';
+    } finally {
+      contactSubmitBtn.textContent = originalText;
+      contactSubmitBtn.disabled = false;
+    }
   });
 </script>
 
@@ -954,59 +928,52 @@
     el.style.display = 'block';
   }
 
-  // Gate tab switcher
-  function switchGateTab(tab){
-    const isSignin = tab === 'signin';
-    document.getElementById('gateSignin').style.display = isSignin ? 'block' : 'none';
-    document.getElementById('gateSignup').style.display = isSignin ? 'none' : 'block';
-    document.getElementById('tabSignin').style.background = isSignin ? 'var(--card)' : 'transparent';
-    document.getElementById('tabSignin').style.color = isSignin ? 'var(--ink)' : 'var(--ink-soft)';
-    document.getElementById('tabSignup').style.background = isSignin ? 'transparent' : 'var(--card)';
-    document.getElementById('tabSignup').style.color = isSignin ? 'var(--ink-soft)' : 'var(--ink)';
-  }
-
-  // Gate Sign In
-  function gateSignIn(e){
+  // Sign in (in-page form)
+  function handleSignIn(e){
     e.preventDefault();
-    const email = document.getElementById('gateEmail').value;
-    const password = document.getElementById('gatePassword').value;
-    document.getElementById('gateSigninError').style.display = 'none';
+    const email = document.getElementById('signinEmail').value;
+    const password = document.getElementById('signinPassword').value;
+    const errEl = document.getElementById('signinError');
+    errEl.style.display = 'none';
+
     auth.signInWithEmailAndPassword(email, password)
-      .catch((err) => showAuthError('gateSigninError', err.message));
+      .then(() => {
+        document.getElementById('signinForm').reset();
+        showPage('account');
+      })
+      .catch((err) => showAuthError('signinError', err.message));
     return false;
   }
 
-  // Gate Sign Up
-  function gateSignUp(e){
+  // Sign up (in-page form)
+  function handleSignUp(e){
     e.preventDefault();
-    const name = document.getElementById('gateName').value;
-    const email = document.getElementById('gateSignupEmail').value;
-    const password = document.getElementById('gateSignupPassword').value;
-    document.getElementById('gateSignupError').style.display = 'none';
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    const errEl = document.getElementById('signupError');
+    errEl.style.display = 'none';
+
     auth.createUserWithEmailAndPassword(email, password)
       .then((cred) => cred.user.updateProfile({ displayName: name }))
-      .catch((err) => showAuthError('gateSignupError', err.message));
+      .then(() => {
+        document.getElementById('signupForm').reset();
+        showPage('account');
+      })
+      .catch((err) => showAuthError('signupError', err.message));
     return false;
   }
-
-  // Old sign in/up handlers (for the inner pages, kept for compatibility)
-  function handleSignUp(e){ e.preventDefault(); return false; }
-  function handleSignIn(e){ e.preventDefault(); return false; }
 
   function handleSignOut(){
     auth.signOut();
+    showPage('home');
   }
 
-  // Controls everything — gate vs site
+  // Site is public — this only updates the nav + account page based on login state
   auth.onAuthStateChanged(function(user){
-    const gate = document.getElementById('authGate');
-    const site = document.getElementById('siteWrapper');
     const authNav = document.getElementById('authNav');
 
     if(user){
-      // Logged in — hide gate, show site
-      gate.style.display = 'none';
-      site.style.display = 'block';
       const isAdmin = user.email === ADMIN_EMAIL;
       const displayName = user.displayName || user.email;
       authNav.innerHTML =
@@ -1015,11 +982,7 @@
         + '<button class="nav-cta" onclick="showPage(\'contact\')">Start a Project</button>';
       document.getElementById('accountWelcome').textContent = 'Welcome, ' + displayName;
       document.getElementById('accountRole').textContent = isAdmin ? 'Signed in as Admin' : 'Signed in';
-      showPage('home');
     } else {
-      // Not logged in — show gate, hide site
-      gate.style.display = 'block';
-      site.style.display = 'none';
       authNav.innerHTML =
         '<button onclick="showPage(\'signin\')" style="font-size:15px; color:var(--ink-soft); font-weight:500;">Sign In</button>'
         + '<button class="nav-cta" onclick="showPage(\'contact\')">Start a Project</button>';
