@@ -50,6 +50,58 @@
 
   ::selection{ background:var(--cyan); color:#fff; }
 
+  /* ---------- DARK MODE ---------- */
+  body.dark{
+    --bg: #0E1A19;
+    --bg-alt: #152421;
+    --ink: #E8F5F3;
+    --ink-soft: #7AADA6;
+    --line: #1F3532;
+    --card: #132220;
+  }
+  body.dark header{ background:rgba(14,26,25,0.88); }
+  body.dark .hero-visual{ background:linear-gradient(155deg,#1A3330,#0E1A19,#081210); }
+  body.dark .marquee-wrap{ background:#0a1614; }
+  body.dark #authGate{ background:var(--bg); }
+
+  /* ---------- DARK MODE TOGGLE ---------- */
+  .dark-toggle{
+    width:40px; height:40px; border-radius:50%; border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-size:18px; transition:all .25s ease; background:var(--bg-alt);
+    flex-shrink:0;
+  }
+  .dark-toggle:hover{ border-color:var(--cyan); transform:scale(1.1); }
+
+  /* ---------- LOADER ---------- */
+  #loader{
+    position:fixed; inset:0; z-index:99999;
+    background:var(--bg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:20px; transition:opacity .5s ease;
+  }
+  #loader .logo{ font-family:'Syne',sans-serif; font-weight:800; font-size:26px; letter-spacing:-0.01em; display:flex; align-items:center; gap:8px; }
+  #loader .logo span{ width:10px; height:10px; border-radius:50%; background:var(--cyan); display:inline-block; }
+  #loader .bar{
+    width:160px; height:3px; background:var(--line); border-radius:99px; overflow:hidden;
+  }
+  #loader .bar-fill{
+    height:100%; width:0%; background:linear-gradient(90deg, var(--cyan), var(--mint));
+    border-radius:99px; animation:load 1.6s ease forwards;
+  }
+  @keyframes load{ 0%{width:0%} 60%{width:75%} 100%{width:100%} }
+  #loader.hidden{ opacity:0; pointer-events:none; }
+
+  /* ---------- SCROLL ANIMATIONS ---------- */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .reveal-delay-1{ transition-delay:.1s; }
+  .reveal-delay-2{ transition-delay:.2s; }
+  .reveal-delay-3{ transition-delay:.3s; }
+
   .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
 
   /* ---------- NAV ---------- */
@@ -379,6 +431,12 @@
 </head>
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+  <div class="logo"><span></span>Pixora Studio</div>
+  <div class="bar"><div class="bar-fill"></div></div>
+</div>
+
 <!-- ===================== AUTH GATE ===================== -->
 <div id="authGate" style="display:none; position:fixed; inset:0; background:var(--bg); z-index:9999; overflow-y:auto;">
   <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 20px;">
@@ -473,6 +531,7 @@
       <button onclick="showPage('signin')" data-nav="signin" style="font-size:15px; color:var(--ink-soft); font-weight:500;">Sign In</button>
       <button class="nav-cta" onclick="showPage('contact')">Start a Project</button>
     </div>
+    <button class="dark-toggle" onclick="toggleDark()" title="Toggle dark mode" id="darkBtn">🌙</button>
     <div class="menu-toggle" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
   </nav>
 </header>
@@ -515,23 +574,23 @@
     </div>
 
     <div class="wrap section-tight">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div class="eyebrow">What we do</div>
         <h2>Everything your website needs, under one roof.</h2>
         <p>From a single landing page to a full e-commerce build, we handle design, development, and the strategy that ties it together.</p>
       </div>
       <div class="grid-3">
-        <div class="card service-card">
+        <div class="card service-card reveal">
           <div class="icon">✦</div>
           <h3>Website Design & Development</h3>
           <p>Custom, responsive websites built from scratch — designed around your brand, built for speed.</p>
         </div>
-        <div class="card service-card">
+        <div class="card service-card reveal">
           <div class="icon" style="color:var(--mint)">▣</div>
           <h3>Landing Pages</h3>
           <p>High-converting single pages for product launches, campaigns, and lead generation.</p>
         </div>
-        <div class="card service-card">
+        <div class="card service-card reveal">
           <div class="icon">⬡</div>
           <h3>E-Commerce</h3>
           <p>Full online stores with secure checkout, inventory, and a back-end you can actually manage.</p>
@@ -541,7 +600,7 @@
 
     <!-- Testimonials -->
     <div class="wrap section-tight">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div class="eyebrow">What clients say</div>
         <h2>Don't just take our word for it.</h2>
       </div>
@@ -671,7 +730,7 @@
 
     <div class="wrap">
       <div style="max-width:360px;">
-        <div class="card team-card">
+        <div class="card team-card reveal">
           <div class="avatar">SR</div>
           <h3>Suwan Rovindu</h3>
           <div class="role">Admin</div>
@@ -720,27 +779,27 @@
 
     <div class="wrap">
       <div class="faq-list">
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>How long does a typical project take?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>A single landing page usually takes about a week. A full multi-page site runs 2–4 weeks depending on scope, and e-commerce builds typically take 4–6 weeks.</p></div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>Do you offer ongoing maintenance after launch?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>Yes — we offer optional monthly maintenance plans covering updates, backups, and small content changes. This is separate from the one-time project fee.</p></div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>Can I update the website myself after it's built?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>Yes. We can build on a content management system so you can edit text and images yourself, or hand off training so your team can manage it confidently.</p></div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>What do you need from me to get started?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>Just a sense of your goals, any brand assets you already have (logo, colors), and example sites you like. We'll guide the rest through a kickoff call.</p></div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>Do you write the content too, or do I provide it?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>Either works. We can write all copy for you as part of the project, or build around content you provide — whichever fits your timeline.</p></div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q" onclick="toggleFaq(this)"><span>What's your payment structure?</span><span class="plus">+</span></div>
           <div class="faq-a"><p>Typically 50% upfront to begin work and 50% on completion before launch. Larger projects can be split into milestone payments.</p></div>
         </div>
@@ -978,6 +1037,54 @@
 
 </div> <!-- end siteWrapper -->
 <script>
+  // ---------- LOADER ----------
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      const loader = document.getElementById('loader');
+      loader.classList.add('hidden');
+      setTimeout(function(){ loader.style.display = 'none'; }, 500);
+    }, 1700);
+  });
+
+  // ---------- DARK MODE ----------
+  function toggleDark(){
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    document.getElementById('darkBtn').textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('pixora-dark', isDark ? '1' : '0');
+  }
+  // Restore preference on load
+  if(localStorage.getItem('pixora-dark') === '1'){
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', function(){
+      const btn = document.getElementById('darkBtn');
+      if(btn) btn.textContent = '☀️';
+    });
+  }
+
+  // ---------- SCROLL ANIMATIONS ----------
+  const revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  function initReveal(){
+    document.querySelectorAll('.reveal').forEach(function(el, i){
+      // Stagger siblings inside same parent
+      const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
+      const idx = siblings.indexOf(el);
+      if(idx === 1) el.classList.add('reveal-delay-1');
+      if(idx === 2) el.classList.add('reveal-delay-2');
+      if(idx === 3) el.classList.add('reveal-delay-3');
+      revealObserver.observe(el);
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initReveal);
+
   function showPage(id){
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -985,6 +1092,13 @@
     const navBtn = document.querySelector('[data-nav="'+id+'"]');
     if(navBtn) navBtn.classList.add('active');
     window.scrollTo({top:0, behavior:'smooth'});
+    // Re-observe reveals on the newly shown page
+    setTimeout(function(){
+      document.querySelectorAll('#'+id+' .reveal').forEach(function(el){
+        el.classList.remove('visible');
+        revealObserver.observe(el);
+      });
+    }, 50);
   }
 
   function toggleFaq(el){
