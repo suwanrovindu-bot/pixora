@@ -52,17 +52,160 @@
 
   /* ---------- DARK MODE ---------- */
   body.dark{
-    --bg: #0E1A19;
-    --bg-alt: #152421;
-    --ink: #E8F5F3;
+    --bg: #0D1716;
+    --bg-alt: #142220;
+    --ink: #E2F0EE;
     --ink-soft: #7AADA6;
-    --line: #1F3532;
-    --card: #132220;
+    --line: #1E3330;
+    --card: #111F1D;
   }
-  body.dark header{ background:rgba(14,26,25,0.88); }
-  body.dark .hero-visual{ background:linear-gradient(155deg,#1A3330,#0E1A19,#081210); }
-  body.dark .marquee-wrap{ background:#0a1614; }
+
+  /* Header */
+  body.dark header{
+    background:rgba(13,23,22,0.92);
+    border-bottom-color:#1E3330;
+  }
+
+  /* Nav buttons */
+  body.dark .nav-links button{ color:#7AADA6; }
+  body.dark .nav-links button:hover,
+  body.dark .nav-links button.active{ color:#E2F0EE; }
+  body.dark .nav-cta{ background:var(--cyan); color:#0D1716; }
+  body.dark .dark-toggle{ background:#142220; border-color:#1E3330; }
+
+  /* Cards */
+  body.dark .card{
+    background:#111F1D;
+    border-color:#1E3330;
+  }
+  body.dark .card:hover{
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+  }
+
+  /* Service icons */
+  body.dark .service-card .icon{ background:#0D1716; }
+
+  /* Hero */
+  body.dark .hero-visual{
+    background:linear-gradient(155deg,#1A3330,#0E1A19,#091110);
+  }
+  body.dark .hero-visual .tag{
+    background:#1A3330; color:#E2F0EE;
+    box-shadow:0 14px 30px rgba(0,0,0,0.4);
+  }
+  body.dark .hero-visual .tag.t2{
+    background:var(--mint); color:#0D1716;
+  }
+  body.dark .stat-row{ border-top-color:#1E3330; }
+  body.dark .stat span{ color:#7AADA6; }
+
+  /* Buttons */
+  body.dark .btn-primary{ background:#E2F0EE; color:#0D1716; }
+  body.dark .btn-primary:hover{ background:var(--cyan); color:#0D1716; }
+  body.dark .btn-secondary{
+    border-color:#1E3330; color:#E2F0EE;
+  }
+  body.dark .btn-secondary:hover{
+    background:#142220; border-color:#7AADA6;
+  }
+
+  /* Marquee */
+  body.dark .marquee-wrap{ background:#091110; }
+  body.dark .marquee-track span{ color:#A8CECA; }
+
+  /* Section heads */
+  body.dark .section-head p{ color:#7AADA6; }
+  body.dark .page-header p{ color:#7AADA6; }
+
+  /* CTA Band */
+  body.dark .cta-band{
+    background:#091110;
+    border:1px solid #1E3330;
+  }
+  body.dark .cta-band h2{ color:#E2F0EE; }
+  body.dark .cta-band p{ color:#7AADA6; }
+  body.dark .cta-band .btn-secondary{
+    border-color:#1E3330; color:#E2F0EE;
+  }
+
+  /* Pricing card featured */
+  body.dark .pricing-card.featured{
+    background:#091110;
+    border-color:#1E3330;
+  }
+  body.dark .pricing-card.featured li{
+    border-top-color:#1E3330;
+  }
+
+  /* FAQ */
+  body.dark .faq-item{ border-bottom-color:#1E3330; }
+  body.dark .faq-q{ color:#E2F0EE; }
+  body.dark .faq-a p{ color:#7AADA6; }
+
+  /* Contact form */
+  body.dark form{
+    background:#111F1D;
+    border-color:#1E3330;
+  }
+  body.dark .field input,
+  body.dark .field select,
+  body.dark .field textarea{
+    background:#0D1716;
+    border-color:#1E3330;
+    color:#E2F0EE;
+  }
+  body.dark .field input::placeholder,
+  body.dark .field textarea::placeholder{
+    color:#3A6560;
+  }
+  body.dark .field input:focus,
+  body.dark .field select:focus,
+  body.dark .field textarea:focus{
+    border-color:var(--cyan);
+  }
+  body.dark .form-note{ color:#7AADA6; }
+
+  /* Footer */
+  body.dark footer{ border-top-color:#1E3330; }
+  body.dark .footer-bottom{
+    border-top-color:#1E3330;
+    color:#7AADA6;
+  }
+  body.dark .footer-col button,
+  body.dark .footer-col a{ color:#7AADA6; }
+  body.dark .footer-brand p{ color:#7AADA6; }
+
+  /* Info rows in contact */
+  body.dark .info-row{ border-top-color:#1E3330; }
+  body.dark .info-row:last-child{ border-bottom-color:#1E3330; }
+  body.dark .info-row .label{ color:#7AADA6; }
+
+  /* Team avatar */
+  body.dark .avatar{ background:linear-gradient(150deg, #1A3330, #0D1716); color:#E2F0EE; }
+
+  /* Portfolio thumb */
+  body.dark .portfolio-thumb{
+    background:linear-gradient(135deg,#142220,#0D1716);
+    color:#7AADA6;
+  }
+
+  /* Auth gate */
   body.dark #authGate{ background:var(--bg); }
+  body.dark #authGate .card,
+  body.dark #authGate form,
+  body.dark #authGate [style*="background:var(--card)"],
+  body.dark #authGate [style*="border-radius:16px"]{
+    background:#111F1D !important;
+    border-color:#1E3330 !important;
+  }
+
+  /* Admin dashboard cards */
+  body.dark [style*="border-left:4px solid"]{
+    background:#111F1D;
+  }
+
+  /* Loader */
+  body.dark #loader{ background:var(--bg); }
 
   /* ---------- DARK MODE TOGGLE ---------- */
   .dark-toggle{
